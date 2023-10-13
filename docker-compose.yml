@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+    app:
+        container_name: aisolutions_app
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - aisolutions
+
+    nginx:
+        container_name: aisolutions_nginx
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8989:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - aisolutions
+
+    postgres:
+        container_name: aisolutions_postgres
+        image: postgres:9.6
+        restart: unless-stopped
+        environment:
+            POSTGRES_PASSWORD: aisolutions
+        ports:
+            - "6543:5432"
+        networks:
+            - aisolutions
+
+    redis:
+        container_name: aisolutions_redis
+        image: redis:latest
+        networks:
+            - aisolutions
+
+networks:
+    aisolutions:
+        driver: bridge
