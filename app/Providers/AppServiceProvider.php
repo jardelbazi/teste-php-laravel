@@ -16,11 +16,19 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Category\CategoryServiceInterface::class,
             \App\Services\Category\CategoryService::class
         );
+        $this->app->bind(
+            \App\Services\Document\DocumentServiceInterface::class,
+            \App\Services\Document\DocumentService::class
+        );
 
         //Repositories
         $this->app->bind(
             \App\Repositories\Category\CategoryRepositoryInterface::class,
             \App\Repositories\Category\CategoryRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Document\DocumentRepositoryInterface::class,
+            \App\Repositories\Document\DocumentRepository::class
         );
     }
 
