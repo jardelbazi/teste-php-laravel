@@ -30,10 +30,16 @@ interface DocumentRepositoryInterface
      * @param DocumentFilterDTO $filter
      * @return DocumentUpdateDTO
      */
-    public function getById(DocumentFilterDTO $filter): DocumentUpdateDTO;
+    public function getOneBy(DocumentFilterDTO $filter): DocumentUpdateDTO;
 
     /**
      * @return array
      */
     public function getAll(): array;
+
+    /**
+     * @param DocumentDTO $data
+     * @return void
+     */
+    public function import(DocumentDTO $data): void;
 }

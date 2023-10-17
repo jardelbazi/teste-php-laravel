@@ -5,9 +5,12 @@ namespace App\Services\Document;
 use App\DTO\Document\DocumentDTO;
 use App\DTO\Document\DocumentUpdateDTO;
 use App\DTO\Document\DocumentFilterDTO;
+use App\Jobs\ProcessaJsonFile;
 use App\Repositories\Document\DocumentRepositoryInterface;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\FlareClient\Http\Exceptions\NotFound;
 
 class DocumentService implements DocumentServiceInterface
 {
@@ -73,9 +76,9 @@ class DocumentService implements DocumentServiceInterface
     /**
      * @inheritdoc
      */
-    public function getById(DocumentFilterDTO $filter): DocumentUpdateDTO
+    public function getOneBy(DocumentFilterDTO $filter): DocumentUpdateDTO
     {
-        return $this->documentRepository->getById($filter);
+        return $this->documentRepository->getOneBy($filter);
     }
 
     /**
@@ -84,5 +87,16 @@ class DocumentService implements DocumentServiceInterface
     public function getAll(): array
     {
         return $this->documentRepository->getAll();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function import(Request $request)
+    {
+        $file = $request->file('document');
+        $path = $file->store('data');
+
+        ProcessaJsonFile::dispatch($path)->onQueue('documents');
     }
 }

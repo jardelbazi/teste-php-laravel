@@ -6,6 +6,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CollectionPaginator
 {
+    /**
+     * @param array $items
+     * @return LengthAwarePaginator
+     */
     public static function paginate(array $items): LengthAwarePaginator
     {
         $perPage = request()->query('perPage', 15);

@@ -73,9 +73,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * @inheritdoc
      */
-    public function getById(CategoryFilterDTO $filter): CategoryUpdateDTO
+    public function getOneBy(CategoryFilterDTO $filter): CategoryUpdateDTO
     {
-        return $this->categoryRepository->getById($filter);
+        return $this->categoryRepository->getOneBy($filter);
     }
 
     /**

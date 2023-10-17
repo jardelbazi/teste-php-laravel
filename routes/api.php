@@ -30,6 +30,7 @@ Route::prefix('categories')->group(function () {
 
 Route::prefix('documents')->group(function () {
 	Route::post('/', [DocumentController::class, 'store']);
+	Route::post('/import', [DocumentController::class, 'import']);
 	Route::put('/{id}', [DocumentController::class, 'update'])->whereNumber('id');
 	Route::get('/{id}', [DocumentController::class, 'show'])->whereNumber('id');
 	Route::delete('/{id}', [DocumentController::class, 'destroy'])->whereNumber('id');

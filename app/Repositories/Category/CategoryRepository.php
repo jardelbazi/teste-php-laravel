@@ -6,7 +6,10 @@ use App\Adapters\Category\RowCategoryAdapter;
 use App\DTO\Category\CategoryDTO;
 use App\DTO\Category\CategoryFilterDTO;
 use App\DTO\Category\CategoryUpdateDTO;
+use App\Interpreters\Category\CategoryIdAttributeInterpreter;
+use App\Interpreters\Category\CategoryNameAttributeInterpreter;
 use App\Models\Category;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -47,10 +50,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getById(CategoryFilterDTO $filter): CategoryUpdateDTO
+    public function getOneBy(CategoryFilterDTO $filter): CategoryUpdateDTO
     {
         return RowCategoryAdapter::of(
-            $this->model->findOrFail($filter->id)
+            $this->getCategoryQuery($filter)->firstOrFail()
         );
     }
 
@@ -65,5 +68,25 @@ class CategoryRepository implements CategoryRepositoryInterface
             return [];
 
         return RowCategoryAdapter::collection($categorys);
+    }
+
+    /**
+     * @param CategoryFilterDTO $filter
+     * @return Builder
+     */
+    private function getCategoryQuery(CategoryFilterDTO $filter): Builder
+    {
+        $query = $this->model->query();
+
+        $interpreters = [
+            new CategoryIdAttributeInterpreter($filter),
+            new CategoryNameAttributeInterpreter($filter),
+        ];
+
+        foreach ($interpreters as $interpreter) {
+            $query = $interpreter->setQuery($query)->interpret();
+        }
+
+        return $query;
     }
 }

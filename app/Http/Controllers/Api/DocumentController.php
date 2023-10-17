@@ -7,6 +7,7 @@ use App\Adapters\Document\RequestDocumentFilterAdapter;
 use App\Adapters\Document\RequestDocumentUpdateAdapter;
 use App\Helpers\CollectionPaginator;
 use App\Http\Controllers\Controller;
+use App\Http\Request\DocumentImportRequest;
 use App\Http\Request\DocumentRequest;
 use App\Http\Resources\DocumentResource;
 use App\Services\Document\DocumentServiceInterface;
@@ -69,7 +70,7 @@ class DocumentController extends Controller
     public function show(Request $request): JsonResponse
     {
         $content = new DocumentResource(
-            $this->documentService->getById(new RequestDocumentFilterAdapter($request))
+            $this->documentService->getOneBy(new RequestDocumentFilterAdapter($request))
         );
 
         return $this->respond($content);
@@ -83,5 +84,16 @@ class DocumentController extends Controller
         return DocumentResource::collection(
             resource: CollectionPaginator::paginate($this->documentService->getAll())
         );
+    }
+
+    /**
+     * @param DocumentImportRequest $request
+     * @return JsonResponse
+     */
+    public function import(DocumentImportRequest $request): JsonResponse
+    {
+        $this->documentService->import($request);
+
+        return $this->respond([], Response::HTTP_CREATED);
     }
 }

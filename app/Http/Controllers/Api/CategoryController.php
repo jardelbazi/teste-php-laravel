@@ -69,7 +69,7 @@ class CategoryController extends Controller
     public function show(Request $request): JsonResponse
     {
         $content = new CategoryResource(
-            $this->categoryService->getById(new RequestCategoryFilterAdapter($request))
+            $this->categoryService->getOneBy(new RequestCategoryFilterAdapter($request))
         );
 
         return $this->respond($content);

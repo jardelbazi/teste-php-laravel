@@ -5,6 +5,7 @@ namespace App\Services\Document;
 use App\DTO\Document\DocumentDTO;
 use App\DTO\Document\DocumentFilterDTO;
 use App\DTO\Document\DocumentUpdateDTO;
+use Illuminate\Http\Request;
 
 interface DocumentServiceInterface
 {
@@ -30,10 +31,16 @@ interface DocumentServiceInterface
      * @param DocumentFilterDTO $filter
      * @return DocumentUpdateDTO
      */
-    public function getById(DocumentFilterDTO $filter): DocumentUpdateDTO;
+    public function getOneBy(DocumentFilterDTO $filter): DocumentUpdateDTO;
 
     /**
      * @return array
      */
     public function getAll(): array;
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function import(Request $request);
 }

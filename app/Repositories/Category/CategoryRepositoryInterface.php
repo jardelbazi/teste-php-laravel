@@ -30,10 +30,10 @@ interface CategoryRepositoryInterface
      * @param CategoryFilterDTO $filter
      * @return CategoryUpdateDTO
      */
-    public function getById(CategoryFilterDTO $filter): CategoryUpdateDTO;
+    public function getOneBy(CategoryFilterDTO $filter): CategoryUpdateDTO;
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getAll(): array;
+    public function getAll(): ?array;
 }

@@ -6,7 +6,9 @@ use App\Adapters\Document\RowDocumentAdapter;
 use App\DTO\Document\DocumentDTO;
 use App\DTO\Document\DocumentFilterDTO;
 use App\DTO\Document\DocumentUpdateDTO;
+use App\Interpreters\Document\DocumentIdAttributeInterpreter;
 use App\Models\Document;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class DocumentRepository implements DocumentRepositoryInterface
 {
@@ -47,10 +49,10 @@ class DocumentRepository implements DocumentRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getById(DocumentFilterDTO $filter): DocumentUpdateDTO
+    public function getOneBy(DocumentFilterDTO $filter): DocumentUpdateDTO
     {
         return RowDocumentAdapter::of(
-            $this->model->findOrFail($filter->id)
+            $this->getDocumentQuery($filter)->firstOrFail()
         );
     }
 
@@ -65,5 +67,33 @@ class DocumentRepository implements DocumentRepositoryInterface
             return [];
 
         return RowDocumentAdapter::collection($documents);
+    }
+
+    /**
+     * @param DocumentFilterDTO $filter
+     * @return Builder
+     */
+    private function getDocumentQuery(DocumentFilterDTO $filter): Builder
+    {
+        $query = $this->model->query();
+
+        $interpreters = [
+            new DocumentIdAttributeInterpreter($filter),
+        ];
+
+        foreach ($interpreters as $interpreter) {
+            $query = $interpreter->setQuery($query)->interpret();
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param DocumentDTO $data
+     * @return void
+     */
+    public function import(DocumentDTO $data): void
+    {
+        $this->model->create($data->toArray());
     }
 }

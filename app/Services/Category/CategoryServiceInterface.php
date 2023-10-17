@@ -30,7 +30,7 @@ interface CategoryServiceInterface
      * @param CategoryFilterDTO $filter
      * @return CategoryUpdateDTO
      */
-    public function getById(CategoryFilterDTO $filter): CategoryUpdateDTO;
+    public function getOneBy(CategoryFilterDTO $filter): CategoryUpdateDTO;
 
     /**
      * @return array
