@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "4b415db4-3642-4018-b6e6-7f3ba5baaaa8",
+		"name": "AI Solutions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14324027"
+	},
+	"item": [
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "store",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nova Categoria\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update/:id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nova Update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy/:id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jardel Pavan Bazi\",\n    \"email\": \"testte@gmail.com\",\n    \"login\": \"logtin\",\n    \"password\": \"passtword\",\n    \"password_confirmation\": \"passtword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "documents",
+			"item": [
+				{
+					"name": "store",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\": 1,\n    \"title\": \"Titulo 2\",\n    \"contents\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur imperdiet enim et suscipit. Etiam placerat nisl nulla, at aliquam nisl mollis id. Praesent quis faucibus arcu, in faucibus mauris. Donec lacinia mollis urna, sed posuere diam fringilla et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras at varius libero. Ut in sapien et magna bibendum lobortis. Vestibulum ac ipsum quis elit auctor sollicitudin vitae nec orci. Nam ligula augue, cursus in tincidunt at, auctor ullamcorper nunc. Nunc vel diam at velit condimentum imperdiet. Nulla varius condimentum enim, sit amet molestie dui interdum ultrices. Fusce ac arcu nec leo elementum euismod in id sem. Aenean vestibulum lacus ac enim convallis volutpat.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update/:id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\": 1,\n    \"title\": \"Titulo Update\",\n    \"contents\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur imperdiet enim et suscipit. Etiam placerat nisl nulla, at aliquam nisl mollis id. Praesent quis faucibus arcu, in faucibus mauris. Donec lacinia mollis urna, sed posuere diam fringilla et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras at varius libero. Ut in sapien et magna bibendum lobortis. Vestibulum ac ipsum quis elit auctor sollicitudin vitae nec orci. Nam ligula augue, cursus in tincidunt at, auctor ullamcorper nunc. Nunc vel diam at velit condimentum imperdiet. Nulla varius condimentum enim, sit amet molestie dui interdum ultrices. Fusce ac arcu nec leo elementum euismod in id sem. Aenean vestibulum lacus ac enim convallis volutpat.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy/:id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jardel Pavan Bazi\",\n    \"email\": \"testte@gmail.com\",\n    \"login\": \"logtin\",\n    \"password\": \"passtword\",\n    \"password_confirmation\": \"passtword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "import",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"contentType": "application/json",
+									"type": "file",
+									"src": "/home/jardel/Projetos/teste-php-laravel/storage/data/2023-03-28.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/documents/import",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"documents",
+								"import"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:8989/api",
+			"type": "string"
+		}
+	]
+}
